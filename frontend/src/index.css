@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-[#F5F7FA] font-sans text-[#172033] antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Consistent, accessible focus treatment across interactive elements. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-[#1F5FAF]/70 ring-offset-1 ring-offset-white;
+  }
+
+  ::selection {
+    @apply bg-[#1F5FAF]/15 text-[#0B1F3A];
+  }
+
+  /* Refined scrollbars (WebKit). */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #F0F4F8;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded bg-slate-300;
+    border: 2px solid #F0F4F8;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-400;
+  }
+
+  /* Accessibility text sizing and high contrast */
+  html.font-size-normal {
+    font-size: 100%;
+  }
+  html.font-size-large {
+    font-size: 108%;
+  }
+  html.font-size-xlarge {
+    font-size: 116%;
+  }
+
+  html.high-contrast {
+    filter: contrast(120%);
+  }
+}
+
+@layer components {
+  /* Government institutional surface */
+  .card {
+    @apply rounded-card border border-[#D9E1EA] bg-white shadow-card;
+  }
+
+  /* Subtle Modern Glassmorphism — ONLY where specified */
+  .glass-header {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(20, 55, 95, 0.12);
+  }
+
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(20, 55, 95, 0.10);
+    box-shadow: 0 1px 3px rgba(11, 31, 58, 0.05);
+  }
+
+  .glass-modal {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(20, 55, 95, 0.12);
+    box-shadow: 0 12px 32px -6px rgba(11, 31, 58, 0.16);
+  }
+
+  /* Faint institutional grid texture for national portal feel */
+  .institutional-grid {
+    background-image: radial-gradient(rgba(20, 55, 95, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Dark scrollbar variant for the sidebar. */
+  .scrollbar-dark::-webkit-scrollbar-thumb {
+    background-color: rgba(148, 163, 184, 0.35);
+    background-clip: content-box;
+    border: 2px solid transparent;
+    border-radius: 9999px;
+  }
+
+  .scrollbar-dark::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(148, 163, 184, 0.55);
+    background-clip: content-box;
+  }
+
+  /* Skeleton loading shimmer. */
+  .skeleton {
+    @apply relative overflow-hidden rounded-md bg-slate-200;
+  }
+
+  .skeleton::after {
+    content: "";
+    @apply absolute inset-0 -translate-x-full;
+
+    background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0.6) 40%,
+      rgba(255, 255, 255, 0.9) 55%,
+      rgba(255, 255, 255, 0) 100%
+    );
+
+    animation: shimmer 1.6s infinite;
+  }
+}
+
+@layer utilities {
+  /* Numeric columns / IDs align better with tabular figures. */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
